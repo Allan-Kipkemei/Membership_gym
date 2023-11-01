@@ -1,5 +1,6 @@
 import os
 from datetime import timedelta
+import dj_database_url
 
 from django.core.management.utils import get_random_secret_key
 
@@ -63,17 +64,34 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'backend.wsgi.application'
 
-DATABASES = {
-        'default': {
-            'ENGINE': 'django.db.backends.postgresql',
-            'NAME': 'railway',
-            'USER': 'postgres',
-            'PASSWORD': '4dggfFg66F-ea6d4Ef1Fe5cc3E*acf24',
-            'HOST': 'roundhouse.proxy.rlwy.net',
-            'PORT': '44646',
-        }
+"""DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'railway',
+        'USER': 'postgres',
+        'PASSWORD': '4dggfFg66F-ea6d4Ef1Fe5cc3E*acf24',
+        'HOST': 'roundhouse.proxy.rlwy.net',
+        'PORT': '44646',
     }
+}"""
 
+
+
+# ...
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.sqlite3',
+        'NAME': os.path.join(BASE_DIR, 'db.sqlite3'),
+    }
+}
+
+
+
+DATABASES['default'] = dj_database_url.parse(
+    "postgres://gym_bptu_user:EdKNSDthyRJ4UiYYEHvGj8oiAilJztIS@dpg-ckv5tmq37rbc73eslc60-a.oregon-postgres.render.com/gym_bptu")
+
+# postgres://gym_bptu_user:EdKNSDthyRJ4UiYYEHvGj8oiAilJztIS@dpg-ckv5tmq37rbc73eslc60-a/gym_bptu
 
 AUTH_PASSWORD_VALIDATORS = [
     {"NAME": "django.contrib.auth.password_validation.UserAttributeSimilarityValidator", },
