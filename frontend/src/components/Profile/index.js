@@ -40,6 +40,11 @@ const Profile = () => {
         },
     });
 
+    const editProfileMutate=useMutate(edit, blacklist,{
+        onSettled:()=>{
+            dispatch({type:'EDIT_PROFILE'})
+        }
+    })
     return (
         <div className="mt-2">
             <h2 className="text-center">Profile</h2>
@@ -73,7 +78,7 @@ const Profile = () => {
             </div>
             <div className="mt-2"><strong>Account created: </strong>{timestampToString(profileData?.["created"])}</div>
             <div className="mt-3 text-center">
-                <Button variant="danger" size="lg" onClick={() => logoutMutation.mutate()}>Edit profile</Button>
+                <Button variant="danger" size="lg" onClick={() => editProfileMutate.mutate()}>Edit profile</Button>
             </div>
 
             <div className="mt-3 text-center">
