@@ -1,13 +1,13 @@
-import {useMutation, useQueryClient} from "react-query";
-import {useDispatch, useSelector} from "react-redux";
-import {toast} from "react-toastify";
+import { useMutation, useQueryClient } from "react-query";
+import { useDispatch, useSelector } from "react-redux";
+import { toast } from "react-toastify";
 import ToggleButton from "react-bootstrap/ToggleButton";
 import ToggleButtonGroup from "react-bootstrap/ToggleButtonGroup";
 import Button from "react-bootstrap/Button";
 import * as profileApi from "../../api/profileApi";
 import * as authApi from "../../api/authApi";
-import {timestampToString} from "../../utils/helpers";
-import {updateWeightUnit} from "../../redux/slices/authSlice";
+import { timestampToString } from "../../utils/helpers";
+import { updateWeightUnit } from "../../redux/slices/authSlice";
 
 
 const Profile = () => {
@@ -30,21 +30,17 @@ const Profile = () => {
     });
 
     const handleWeightUnitChange = (value) => {
-        const payload = {"weight_system": value};
+        const payload = { "weight_system": value };
         updateProfileMutation.mutate(payload);
     };
 
     const logoutMutation = useMutation(authApi.blacklist, {
         onSettled: () => {
-            dispatch({type: "CLEAR_SESSION"});
+            dispatch({ type: "CLEAR_SESSION" });
         },
     });
 
-    const editProfileMutate=useMutate(edit, blacklist,{
-        onSettled:()=>{
-            dispatch({type:'EDIT_PROFILE'})
-        }
-    })
+
     return (
         <div className="mt-2">
             <h2 className="text-center">Profile</h2>
@@ -78,7 +74,7 @@ const Profile = () => {
             </div>
             <div className="mt-2"><strong>Account created: </strong>{timestampToString(profileData?.["created"])}</div>
             <div className="mt-3 text-center">
-                <Button variant="danger" size="lg" onClick={() => editProfileMutate.mutate()}>Edit profile</Button>
+                <Button variant="danger" size="lg" >Edit profile</Button>
             </div>
 
             <div className="mt-3 text-center">

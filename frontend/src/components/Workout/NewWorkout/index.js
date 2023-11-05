@@ -8,6 +8,7 @@ import ListWorkoutExercises from "./ListWorkoutExercises";
 import {timestampToString} from "../../../utils/helpers";
 import {clearWorkout} from "../../../redux/slices/workoutSlice";
 import * as api from "../../../api/workoutApi";
+import Welcome from "./Welcome";
 
 
 const NewWorkout = () => {
@@ -35,7 +36,11 @@ const NewWorkout = () => {
     }
 
     return (
-        <div className="mt-2">
+        <>
+        <div>
+<Welcome/>
+        </div>
+           <div className="mt-2">
             <h2 className="text-center">New workout</h2>
             <div className="text-secondary">
                 <strong>Status:</strong> Started | {timestampToString(new Date())}
@@ -54,6 +59,8 @@ const NewWorkout = () => {
                 onHide={() => setShowExerciseModal(false)}
             />
         </div>
+        </>
+
     );
 };
 
